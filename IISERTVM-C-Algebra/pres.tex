@@ -1,0 +1,403 @@
+% --- LaTeX Presentation Template - S. Venkatraman ---
+
+% --- Set document class ---
+
+% Remove "handout" when presenting to include pauses
+\documentclass[dvipsnames]{beamer}
+\usetheme{default}
+
+% Make content that is hidden by pauses "transparent"
+\setbeamercovered{transparent}
+
+% --- Slide layout settings ---
+
+% Set line spacing
+\renewcommand{\baselinestretch}{1.15}
+
+% Set left and right text margins
+\setbeamersize{text margin left=12mm, text margin right=12mm}
+
+% Add slide numbers in bottom right corner
+\setbeamertemplate{footline}[frame number]
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Allow local line spacing changes
+\usepackage{setspace}
+
+% Change itemized list bullets to circles
+\setbeamertemplate{itemize item}{$\bullet$}
+\setbeamertemplate{itemize subitem}{$\circ$}
+
+% --- Color and font settings ---
+
+\usepackage{xcolor}
+
+% Slide title background color
+\definecolor{background}{HTML}{ede6d8}
+
+% Slide title text color
+\definecolor{titleText}{HTML}{B40404}
+
+% Other possible color schemes
+
+% - Light green/dark green -
+%\definecolor{background}{HTML}{e4ede4}
+%\definecolor{titleText}{HTML}{2e592f}
+
+% - Light blue/dark blue -
+%\definecolor{background}{HTML}{d5d9e8}
+%\definecolor{titleText}{HTML}{2d375e}
+
+% - Beige/dark blue -
+%\definecolor{background}{HTML}{e8e2d5}
+%\definecolor{titleText}{HTML}{2d3375}
+
+% Set colors
+\setbeamercolor{frametitle}{bg=background, fg=titleText}
+\setbeamercolor{subtitle}{fg=titleText}
+
+% Set font sizes for frame title and subtitle
+\setbeamerfont{frametitle}{size=\fontsize{15}{16}}
+\setbeamerfont{framesubtitle}{size=\small}
+
+% --- Math/Statistics commands ---
+
+% Add a reference number to a single line of a multi-line equation
+% Usage: "\numberthis\label{labelNameHere}" in an align or gather environment
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+% Shortcut for bold text in math mode, e.g. $\b{X}$
+\let\b\mathbf
+
+% Shortcut for bold Greek letters, e.g. $\bg{\beta}$
+\let\bg\boldsymbol
+% Shortcut for calligraphic script, e.g. %\mc{M}$
+\let\mc\mathcal
+
+% \mathscr{(letter here)} is sometimes used to denote vector spaces
+\usepackage[mathscr]{euscript}
+
+% Convergence: right arrow with optional text on top
+% E.g. $\converge[p]$ for converges in probability
+\newcommand{\converge}[1][]{\xrightarrow{#1}}
+
+% Weak convergence: harpoon symbol with optional text on top
+% E.g. $\wconverge[n\to\infty]$
+\newcommand{\wconverge}[1][]{\stackrel{#1}{\rightharpoonup}}
+
+% Equality: equals sign with optional text on top
+% E.g. $X \equals[d] Y$ for equality in distribution
+\newcommand{\equals}[1][]{\stackrel{\smash{#1}}{=}}
+
+% Normal distribution: arguments are the mean and variance
+% E.g. $\normal{\mu}{\sigma}$
+\newcommand{\normal}[2]{\mathcal{N}\left(#1,#2\right)}
+
+% Uniform distribution: arguments are the left and right endpoints
+% E.g. $\unif{0}{1}$
+\newcommand{\unif}[2]{\text{Uniform}(#1,#2)}
+
+% Independent and identically distributed random variables
+% E.g. $ X_1,...,X_n \iid \normal{0}{1}$
+\newcommand{\iid}{\stackrel{\smash{\text{iid}}}{\sim}}
+
+% Sequences (this shortcut is mostly to reduce finger strain for small hands)
+% E.g. to write $\{A_n\}_{n\geq 1}$, do $\bk{A_n}{n\geq 1}$
+\newcommand{\bk}[2]{\{#1\}_{#2}}
+
+% Math mode symbols for common sets and spaces. Example usage: $\R$
+\newcommand{\R}{\mathbb{R}}	% Real numbers
+\newcommand{\C}{\mathbb{C}}	% Complex numbers
+\newcommand{\Q}{\mathbb{Q}}	% Rational numbers
+\newcommand{\Z}{\mathbb{Z}}	% Integers
+\newcommand{\N}{\mathbb{N}}	% Natural numbers
+\newcommand{\F}{\mathcal{F}}	% Calligraphic F for a sigma algebra
+\newcommand{\El}{\mathcal{L}}	% Calligraphic L, e.g. for L^p spaces
+
+% Math mode symbols for probability
+\newcommand{\pr}{\mathbb{P}}	% Probability measure
+\newcommand{\E}{\mathbb{E}}	% Expectation, e.g. $\E(X)$
+\newcommand{\var}{\text{Var}}	% Variance, e.g. $\var(X)$
+\newcommand{\cov}{\text{Cov}}	% Covariance, e.g. $\cov(X,Y)$
+\newcommand{\corr}{\text{Corr}}	% Correlation, e.g. $\corr(X,Y)$
+\newcommand{\B}{\mathcal{B}}	% Borel sigma-algebra
+
+% Other miscellaneous symbols
+\newcommand{\tth}{\text{th}}	% Non-italicized 'th', e.g. $n^\tth$
+\newcommand{\Oh}{\mathcal{O}}	% Big-O notation, e.g. $\O(n)$
+\newcommand{\1}{\mathds{1}}	% Indicator function, e.g. $\1_A$
+
+% Additional commands for math mode
+\DeclareMathOperator*{\argmax}{argmax}	% Argmax, e.g. $\argmax_{x\in[0,1]} f(x)$
+\DeclareMathOperator*{\argmin}{argmin}	% Argmin, e.g. $\argmin_{x\in[0,1]} f(x)$
+\DeclareMathOperator*{\spann}{Span}	% Span, e.g. $\spann\{X_1,...,X_n\}$
+\DeclareMathOperator*{\bias}{Bias}	% Bias, e.g. $\bias(\hat\theta)$
+\DeclareMathOperator*{\ran}{ran}		% Range of an operator, e.g. $\ran(T) 
+\DeclareMathOperator*{\dv}{d\!}		% Non-italicized 'with respect to', e.g. $\int f(x) \dv x$
+\DeclareMathOperator*{\diag}{diag}	% Diagonal of a matrix, e.g. $\diag(M)$
+\DeclareMathOperator*{\trace}{trace}	% Trace of a matrix, e.g. $\trace(M)$
+\DeclareMathOperator*{\supp}{supp}	% Support of a function, e.g., $\supp(f)$
+
+% --- Presentation begins here ---
+
+\begin{document}
+
+% --- Title slide ---
+
+\title{\color{titleText}Introduction to C* algebras}
+\subtitle{\color{Blue}(No proofs, just the ideas)}
+\author{Joel Sleeba\vspace{-.3cm}}
+\date{\small October 9, 2023}
+\institute{IISER Thiruvananthapuram}
+
+\begin{frame}
+\titlepage
+\vspace{-1.2cm}
+\begin{center}
+{\begin{spacing}{1.2}\scriptsize 
+  Things I learned during summer
+\end{spacing}}
+\end{center}
+\end{frame}
+
+% --- Main content ---
+\section{Basics}
+
+% Example slide: use \pause to sequentially unveil content
+\begin{frame}{Definition}
+\framesubtitle{C* algebra}
+\begin{enumerate}
+  \item A unital algebra (vector space + multiplication) $\mathcal{A}$
+    \begin{itemize}
+      \item $(ab)c = a(bc)$
+      \item $(a+ \lambda b)c = ac + \lambda bc$
+      \item $a(b+ \lambda c) = ab + \lambda ac$
+      \item $1_\mathcal{A} a = a = a1_\mathcal{A}$
+    \end{itemize}
+    \pause
+  \item with an \textcolor{red}{involution} $*$
+    \begin{itemize}
+      \item $(\alpha a+\beta b)^* = \overline{\alpha}a^* + \overline{\beta}b^*$
+      \item $(ab)^* = b^*a^*$
+      \item $a^{**} = a$
+    \end{itemize}
+    \pause
+  \item and a complete norm $\|\cdot \|$ that satisfy
+    \begin{itemize}
+      \item $\|ab\| \le \|a\| \|b\|$ (submultiplicativity)
+      \item $\|a^*\| = \|a\|$
+      \item $\|a^*a\| = \|a\|^2$
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+% Example slide 2: Image
+\begin{frame}{Examples}
+\framesubtitle{C* algebra}
+\begin{enumerate}
+  \item $\mathbb{C}$ with standard multiplication, conjugation, and standard norm. \pause
+  \item B(X), complex valued bounded functions on $X$, with pointwise multiplication, conjugation, and supremum norm.
+  \item $B(\mathcal{H})$ for a Hilbert space $\mathcal{H}$ with composition, adjoint, and operator norm.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Spectrum}
+\framesubtitle{C* algebra}
+\begin{definition}[Invertible elements of $\mathcal{A}$]
+    An element $a \in \mathcal{A}$ is called invertible if there is an element $z \in \mathcal{A}$ such that $az = 1_\mathcal{A} = za$. \pause
+    We denote the collection of invertible elements of $\mathcal{A}$ by $G(\mathcal{A})$
+\end{definition} \pause
+
+\begin{definition}[Spectrum of an element]
+  We define the spectum of an element $a \in \mathcal{A}$ as the collection $$\sigma(a) = \{ \lambda \in \mathbb{C} \ |  \ 1_A \lambda - a \notin G(\mathcal{A})\}$$ \pause
+  and the {\bf spectral radius} of $a$ as $$r(a) = \sup \{ |\lambda| \ | \ \lambda \in \sigma(a) \}$$
+\end{definition}
+\end{frame}
+
+\begin{frame}{Properties of spectrum}
+\framesubtitle{C* algebra}
+\begin{itemize}
+  \item $G(\mathcal{A})$ is an open in $\mathcal{A}$ \pause
+  \item $r(a) \le \|a\|$ \pause
+  \item $\sigma(a)$ is nonempty for all $a \in A$ (Gelfand) \pause
+  \item $\sigma(a)$ is closed compact in $\mathbb{C}$ \pause
+  \item $r(a) = \lim \|a^n\|^\frac{1}{n}$ (Beurling) \pause
+  \item If every nonzero element in $\mathcal{A}$ is invertible, then $\mathcal{A} = \mathbb{C}1_A$ (Gelfand - Mazur)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Some special elements}
+\framesubtitle{C* algebra}
+\begin{definition}
+  Let $\mathcal{A}$ be a C* algebra, an element $a \in \mathcal{A}$ is called:
+  \begin{itemize}
+    \item \textbf{self adjoint / hermitian} if $a^* = a$ \pause
+    \item {\bf normal} if $a^*a = aa^*$ \pause
+    \item {\bf unitary} if $a^*a = 1_A = aa^*$ \pause
+    \item {\bf positive} if $a$ is hermitian and $\sigma(a) \subset \mathbb{R}^+$ \pause
+    \item {\bf projection} if $a^2 = a$
+  \end{itemize}
+\end{definition}
+
+\pause
+We can easily show that if
+\begin{itemize}
+  \item $a$ is hermitian, then $\sigma(a) \subset \mathbb{R}$ \pause
+  \item $a$ is unitary, then $\sigma(a) \subset \mathbb{T}$ 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Some Properties}
+\framesubtitle{C* algebra}
+  We will now use $\mathcal{A}_{sa}$ and $\mathcal{A}^+$ to denote hermitian and positive elements in $\mathcal{A}$ respectively \pause 
+  \begin{itemize}
+    \item Every $a \in \mathcal{A}$ can be written as $a = b + ic$ where $b, c \in \mathcal{A}_{sa}$ \pause (Compare this with decomposition of a matrix to symmetric and skew-symmetric pairs) \pause
+    \item If $a, b \in \mathcal{A}^+$, then $a+b, \alpha a \in \mathcal{A}^+$ for $\alpha \ge 0$ \pause
+    \item $\mathcal{A}^+ = \{a^*a \ | \ a \in \mathcal{A}\}$ \pause
+    \item $a \le b$ if $b - a \in \mathcal{A}^+$ defines a partial order in $\mathcal{A}_{sa}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Homomorphisms}
+\framesubtitle{C* algebra}
+\begin{definition}[Homomorphisms between C* algebras]
+  An involutive multiplicative bounded linear map between C* algebras is called a homomorphism. \pause
+
+  Let $\phi: \mathcal{A \to B}$ be a linear map between C* algebras $\mathcal{A, B}$.
+  \begin{itemize}
+    \item $\phi \in B(\mathcal{A, B})$ (bounded)
+    \item $\phi(ab) = \phi(a) \phi(b)$ (multiplicative)
+    \item $\phi(a^*) = \phi(a)^*$ (involutive)
+  \end{itemize}
+\end{definition}
+\pause
+
+Some properties:
+\begin{itemize} %[Some properties]
+  \item If $\phi: \mathcal{A} \to \mathcal{B}$, then $\phi$ is norm decreasing. ($\|\phi(a)\| \le \|a\|$) \pause
+  \item Every injective $*$-homomorphisms are isometric.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Gelfand Spectrum}
+\framesubtitle{C* algebra}
+   \begin{definition}
+     If $\mathcal{A}$ is a C* algebra, we define the Gelfand specturm of $\mathcal{A}$ to be the collection of all $*$ homomorphims from $\mathcal{A} \to \mathbb{C}$ and denote it by $\Omega(\mathcal{A})$. \pause
+     Since $\Omega(\mathcal{A}) \subset \mathcal{A}^*$, the dual space of $\mathcal{A}$, we can endow $\Omega(\mathcal{A})$ with the weak * topology from $\mathcal{A}^*$
+   \end{definition}
+   \pause
+
+   Note that by the norm decreasing property of the $*$-homomorphisms we see that $\Omega(\mathcal{A})$ is a subset of the closed unit ball of $\mathcal{A}^*$
+\end{frame}
+
+\begin{frame}{Gelfand Transform}
+\framesubtitle{Abelian C* algebra}
+  Assuming $\mathcal{A}$ to be abelian gives us extra results
+  \begin{enumerate}
+    \item $\Omega(A)$ to be compact. \pause
+    \item $\sigma(a) = \Omega(A)a = \{\tau(a) \ | \ \tau \in \Omega(A) \}$
+  \end{enumerate}
+\pause
+
+\begin{definition}[Gelfand Transform]
+  Given any abelian C* algebra $\mathcal{A}$, we define the Gelfand transform of $a \in \mathcal{A}$ as the map $$\hat{a}: C(\Omega(A)) \to \mathbb{C}: = \hat{a}(f) = f(a)$$
+\end{definition}
+\end{frame}
+
+\begin{frame}{Gelfand Representation}
+\framesubtitle{Abelian C* algebra}
+If the C* algebra is abelian, we can represent the abstract C* algebra with a concrete a C* algebra of continuous functions in a compact space. \pause This is given by the Gelfand representation.
+\pause
+
+\begin{theorem}[Gelfand]
+  For any abelian C* algebra $\mathcal{A}$, Gelfand representation, defined as $$\mathcal{A} \to C(\Omega(\mathcal{A})): a \to \hat{a}$$
+  is an isometric $*$-isomorphism.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{States and Representations}
+  \framesubtitle{towards a more general representation }
+  \begin{definition}[States of a C* algebra]
+    Given a C* algebra $\mathcal{A}$, a $*$ homomorphism $\phi: \mathcal{A} \to \mathbb{C}$ is called a {\bf state} if \pause
+    \begin{enumerate}
+      \item $\phi(a) \in \mathbb{R}^+$ for all $a \in \mathcal{A}^+$ (positive) \pause
+      \item $\phi(1_A) = 1$
+    \end{enumerate}
+  \end{definition}
+  \pause
+  \begin{definition}[Representation of a C* algebra]
+    Given a C* algebra $\mathcal{A}$ and a Hilbert space $H$, a map $\pi: \mathcal{A} \to B(H)$ is called a representation if it is a $*$-homomorphism. \pause If $\pi$ is injective we call the representation {\bf faithful}.
+  \end{definition}
+\end{frame}
+
+\begin{frame}{GNS Constructions}
+  \framesubtitle{towards a more general representation }
+  Given any representation $(H, \pi)$ of a C* algebra $\mathcal{A}$ to a Hilbert space $H$, it can be verified that $$\phi: \mathcal{A} \to \mathbb{C}:= a \to \langle \pi(a) \xi, \xi \rangle$$
+  is a state for any unit vector $\xi \in H$.
+
+  \pause
+
+  The reverse is also true.
+
+  \pause
+
+  Given any state $\phi$ of a C* algebra $\mathcal{A}$, we can construct a Hilbert space $H_\phi$, a map $\pi_\phi$, and a unit vector $\xi_\phi \in H_\phi$ such that $(H_\phi, \pi_\phi)$ is a representation for $\mathcal{A}$ and $$\phi(a) = \langle \pi_\phi(a) \xi_\phi, \xi_\phi \rangle_{H_\phi}$$
+\end{frame}
+
+\begin{frame}{Universal Representation}
+  \framesubtitle{the general representation}
+  \begin{definition}[Universal Representation]
+    Let $S(\mathcal{A})$ be the collection of all states of a C* algebra $\mathcal{A}$. \pause For any $\phi \in S(\mathcal{A})$ let $(H_\phi, \pi_\phi, \xi_\phi)$ be the corresponding GNS representation, Let $$H = \bigoplus_{\phi \in S(\mathcal{A})} H_\phi, \quad\quad \pi = \bigoplus_{\phi \in S(\mathcal{A})} \pi_\phi, \quad \quad \xi = \bigoplus_{\phi \in S(\mathcal{A})} \xi_\phi$$
+    Then $(H, \pi)$ is called the universal representation of the C* algebra $\mathcal{A}$.
+  \end{definition}
+\end{frame}
+
+\begin{frame}{Gelfand Naimark Theorem}
+  \framesubtitle{the general representation}
+  \begin{theorem}[Gelfand Naimark Theorem]
+    Given any C* algebra $\mathcal{A}$, its universal representation is faithful.
+  \end{theorem}
+  \pause
+  \vspace{1em}
+  Along with the fact that injective $*$-homomorphisms are isometric and image of a C* homomorphism is a C* subalgebra, we see that every C* algebra is isometrically isomorphic to a subalgebra of operators in a Hilbert space.
+\end{frame}
+% --- Bibliography slide ---
+
+\begin{frame}{References}
+\begin{thebibliography}{10}
+\beamertemplatearticlebibitems
+{\small
+
+\bibitem{Paper1}
+C* Algebras and Operator Theory
+\newblock Gerald Murphy \\
+
+\bibitem{Paper 2}
+Functional Analysis; Spectral Theory
+\newblock V. S. Sunder\\
+
+\bibitem{Paper 3}
+  For More
+\newblock \url{https://joelsleeba.github.io/resources/}
+}
+\end{thebibliography}
+\end{frame}
+
+% --- Thank you slide ---
+
+\begin{frame}
+\begin{center}
+{\large\color{titleText} Thank you for listening!}
+\vspace{1cm}
+
+Joel Sleeba \\[1em]
+joelsleeba1@gmail.com \\
+  \href{https://joelsleeba.github.io}{joelsleeba.github.io}
+\end{center}
+\end{frame}
+
+% --- Presentation ends here ---
+
+\end{document}
